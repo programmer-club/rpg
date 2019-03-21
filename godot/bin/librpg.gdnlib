@@ -1,0 +1,17 @@
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+
+[entry]
+
+X11.64="res://bin/librpg.so"
+Windows.64="res://bin/librpg.dll"
+OSX.64="res://bin/librpg.dylib"
+
+[dependencies]
+
+X11.64=[]
+Windows.64=[]
+OSX.64=[]
