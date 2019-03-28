@@ -284,6 +284,11 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 80, 80, 16, 16 )
 
+[node name="StaticBody2D" type="StaticBody2D" parent="TileSetCutter/55"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileSetCutter/55/StaticBody2D"]
+polygon = PoolVector2Array( -8, 8, -8, -8, 8, -8, 8, 8 )
+
 [node name="37" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 0, 144 )
 texture = ExtResource( 3 )
