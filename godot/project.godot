@@ -12,16 +12,3 @@ _global_script_classes=[  ]
 _global_script_class_icons={
 
 }
-
-[application]
-
-config/name="RPG"
-config/icon="res://icon.png"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "TileSetCutter" )
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
