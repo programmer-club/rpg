@@ -9,6 +9,8 @@ onready var rc_up = get_node("RayCastUp")
 onready var rc_left = get_node("RayCastLeft")
 onready var rc_right = get_node("RayCastRight")
 
+var health = 100;
+
 func _ready():
 	set_process_input(true)
 
