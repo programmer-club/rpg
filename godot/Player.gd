@@ -8,7 +8,7 @@ onready var rc_down = get_node("RayCastDown")
 onready var rc_up = get_node("RayCastUp")
 onready var rc_left = get_node("RayCastLeft")
 onready var rc_right = get_node("RayCastRight")
-
+signal health_changed();
 var health = 100;
 
 func _ready():
