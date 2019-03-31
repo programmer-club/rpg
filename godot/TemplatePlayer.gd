@@ -1,4 +1,3 @@
-
 extends Node2D
 
 onready var anim = get_node("AnimationPlayer")
@@ -8,21 +7,13 @@ onready var rc_down = get_node("RayCastDown")
 onready var rc_up = get_node("RayCastUp")
 onready var rc_left = get_node("RayCastLeft")
 onready var rc_right = get_node("RayCastRight")
-
-export(int) var str_stat = 10
-export(int) var dex_stat = 10
-export(int) var int_stat = 10
-export(int) var con_stat = 10
-export(int) var wis_stat = 10
-export(int) var cha_stat = 10
-
 signal health_changed();
 var health = 100;
 
 func _ready():
 	set_process_input(true)
 
-func move(event):
+func _input(event):
 	if not anim.is_playing():
 		if event.is_action_pressed("ui_down"):
 			if rc_down.is_colliding():
@@ -52,7 +43,3 @@ func move(event):
 
 func move_squares(offset):
 	translate(offset * 16)
-	
-func _input(event):
-	move(event);
-

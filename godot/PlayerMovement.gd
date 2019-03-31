@@ -6,7 +6,7 @@ var velocity = Vector2()
 
 func get_input():
     velocity = Vector2()
-    if Input.is_action_pressed('right') && this.testMove:
+    if Input.is_action_pressed('right'):
         velocity.x += 1
     elif Input.is_action_pressed('left'):
         velocity.x -= 1
@@ -14,7 +14,7 @@ func get_input():
         velocity.y += 1
     elif Input.is_action_pressed('up'):
         velocity.y -= 1
-    velocity = velocity.snapped( * speed
+    velocity = velocity.normalized() * speed
 
 func _physics_process(delta):
     get_input()

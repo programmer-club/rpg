@@ -1,13 +1,43 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/DungeonStarter.png" type="Texture" id=2]
-[ext_resource path="res://Stats.gd" type="Script" id=3]
+[ext_resource path="res://TemplatePlayer.gd" type="Script" id=1]
+[ext_resource path="res://assets/100x100_RedCircle.png" type="Texture" id=2]
 
-[node name="Player" type="Node2D"]
+[sub_resource type="Animation" id=1]
+resource_name = "down"
+length = 0.001
+
+[sub_resource type="Animation" id=2]
+resource_name = "left"
+length = 0.001
+
+[sub_resource type="Animation" id=3]
+resource_name = "look_down"
+length = 0.001
+
+[sub_resource type="Animation" id=4]
+resource_name = "look_left"
+length = 0.001
+
+[sub_resource type="Animation" id=5]
+resource_name = "look_right"
+length = 0.001
+
+[sub_resource type="Animation" id=6]
+resource_name = "look_up"
+length = 0.001
+
+[sub_resource type="Animation" id=7]
+resource_name = "right"
+length = 0.001
+
+[sub_resource type="Animation" id=8]
+resource_name = "up"
+length = 0.001
+
+[node name="TemplatePlayer" type="Node2D"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( 40, 24 )
 z_index = 2
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
@@ -24,6 +54,14 @@ region_rect = Rect2( 80, 208, 16, 16 )
 region_filter_clip = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D"]
+anims/down = SubResource( 1 )
+anims/left = SubResource( 2 )
+anims/look_down = SubResource( 3 )
+anims/look_left = SubResource( 4 )
+anims/look_right = SubResource( 5 )
+anims/look_up = SubResource( 6 )
+anims/right = SubResource( 7 )
+anims/up = SubResource( 8 )
 
 [node name="RayCastDown" type="RayCast2D" parent="KinematicBody2D"]
 enabled = true
@@ -40,7 +78,4 @@ cast_to = Vector2( -16, 0 )
 [node name="RayCastRight" type="RayCast2D" parent="KinematicBody2D"]
 enabled = true
 cast_to = Vector2( 16, 0 )
-
-[node name="PlayerStats" type="Node" parent="KinematicBody2D"]
-script = ExtResource( 3 )
 
