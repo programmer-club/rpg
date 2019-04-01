@@ -1,13 +1,13 @@
 
 extends Node2D
 
-onready var anim = get_node("AnimationPlayer")
-onready var sprite = get_node("Player")
+onready var anim = get_node("KinematicBody2D/AnimationPlayer")
+onready var sprite = get_node("KinematicBody2D/Player")
 
-onready var rc_down = get_node("RayCastDown")
-onready var rc_up = get_node("RayCastUp")
-onready var rc_left = get_node("RayCastLeft")
-onready var rc_right = get_node("RayCastRight")
+onready var rc_down = get_node("KinematicBody2D/RayCastDown")
+onready var rc_up = get_node("KinematicBody2D/RayCastUp")
+onready var rc_left = get_node("KinematicBody2D/RayCastLeft")
+onready var rc_right = get_node("KinematicBody2D/RayCastRight")
 
 export(int) var str_stat = 10
 export(int) var dex_stat = 10
@@ -16,7 +16,7 @@ export(int) var con_stat = 10
 export(int) var wis_stat = 10
 export(int) var cha_stat = 10
 
-signal health_changed();
+signal health_changed(newhealth);
 var health = 100;
 
 func _ready():
@@ -53,7 +53,11 @@ func _input(event):
 		if event.is_action_pressed("attack2"):
 			attack2()
 		if event.is_action_pressed("attack3"):
-			attack3()				
+			attack3()
+		if event.is_action_pressed("health_increase"):
+			change_health(1)
+		if event.is_action_pressed("health_decrease"):
+			change_health(-1)						
 	
 
 func move_squares(offset):
@@ -67,3 +71,14 @@ func attack2():
 
 func attack3():
 	pass;
+	
+func change_health(delta_health):
+	if health + delta_health > 100:
+		health=100
+	elif health + delta_health < 0:
+		health= 0
+	else:
+		health += delta_health
+	
+	emit_signal("health_changed", health)
+	print("changing health by ", delta_health)

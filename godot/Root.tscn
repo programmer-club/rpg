@@ -8,12 +8,13 @@
 
 [node name="Control" parent="." instance=ExtResource( 1 )]
 margin_left = 18.8551
-margin_top = 259.781
+margin_top = 256.0
 margin_right = 18.8551
-margin_bottom = 259.781
+margin_bottom = 256.0
 
 [node name="Map" parent="." instance=ExtResource( 2 )]
 
 [node name="Knight" parent="." instance=ExtResource( 3 )]
 position = Vector2( 40, 24 )
 
+[connection signal="health_changed" from="Knight" to="Control" method="_on_Knight_health_changed"]
