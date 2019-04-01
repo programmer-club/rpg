@@ -11,3 +11,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+func attack1():
+	print("Wizard doing attack 1");
+
+func attack2():
+	pass;
+
+func attack3():
+	pass;

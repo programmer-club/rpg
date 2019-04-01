@@ -22,7 +22,7 @@ var health = 100;
 func _ready():
 	set_process_input(true)
 
-func move(event):
+func _input(event):
 	if not anim.is_playing():
 		if event.is_action_pressed("ui_down"):
 			if rc_down.is_colliding():
@@ -48,11 +48,22 @@ func move(event):
 			else:
 				anim.play("right")
 				move_squares(Vector2(1,0))
+		if event.is_action_pressed("attack1"):
+			attack1()
+		if event.is_action_pressed("attack2"):
+			attack2()
+		if event.is_action_pressed("attack3"):
+			attack3()				
 	
 
 func move_squares(offset):
 	translate(offset * 16)
 	
-func _input(event):
-	move(event);
+func attack1():
+	print("Default Player doing attack 1");
 
+func attack2():
+	pass;
+
+func attack3():
+	pass;
