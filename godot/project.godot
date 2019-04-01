@@ -23,6 +23,10 @@ run/main_scene="res://Root.tscn"
 window/size/height=700
 window/size/resizable=false
 
+[editor_plugins]
+
+enabled=PoolStringArray( "godot-inheritance-dock" )
+
 [input]
 
 left={
