@@ -1,8 +1,70 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/TileSetCutter/tilesetcutter.gd" type="Script" id=1]
 [ext_resource path="res://addons/TileSetCutter/icon.png" type="Texture" id=2]
 [ext_resource path="res://assets/DungeonStarter.png" type="Texture" id=3]
+
+[sub_resource type="NavigationPolygon" id=1]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, 8, 8, 8, 8, -8, -8, -8 ) ]
+
+[sub_resource type="NavigationPolygon" id=3]
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, 8, 8, 8, 8, -8, -8, -8 ) ]
+
+[sub_resource type="NavigationPolygon" id=4]
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, 8, 8, 8, 8, -8, -8, -8 ) ]
+
+[sub_resource type="NavigationPolygon" id=5]
+vertices = PoolVector2Array( -8, 8, -8, -8, 8, -8, 8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 0 ) ]
+outlines = [ PoolVector2Array( -8, 8, 8, 8, 8, -8, -8, -8, -8, 8 ) ]
+
+[sub_resource type="NavigationPolygon" id=6]
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, 8, 8, 8, 8, -8, -8, -8 ) ]
+
+[sub_resource type="NavigationPolygon" id=7]
+vertices = PoolVector2Array( 0, 8, -8, 8, -8, -8, 8, -8, 8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ) ]
+outlines = [ PoolVector2Array( 0, 8, -8, 8, -8, -8, 8, -8, 8, 8 ) ]
+
+[sub_resource type="NavigationPolygon" id=8]
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 ) ]
+
+[sub_resource type="NavigationPolygon" id=9]
+vertices = PoolVector2Array( -8, 8, -8, -8, 8, -8, 8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 0 ) ]
+outlines = [ PoolVector2Array( -8, 8, 8, 8, 8, -8, -8, -8, -8, 8 ) ]
+
+[sub_resource type="NavigationPolygon" id=10]
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, 8, 8, 8, 8, -8, -8, -8 ) ]
+
+[sub_resource type="NavigationPolygon" id=11]
+vertices = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, 8, 8, 8, 8, -8, -8, -8 ) ]
+
+[sub_resource type="NavigationPolygon" id=12]
+vertices = PoolVector2Array( -8, 8, -8, -8, 8, -8, 8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 0 ) ]
+outlines = [ PoolVector2Array( -8, 8, 8, 8, 8, -8, -8, -8, -8, 8 ) ]
+
+[sub_resource type="NavigationPolygon" id=13]
+vertices = PoolVector2Array( -8, 8, -8, -8, 8, -8, 8, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -8, 8, -8, -8, 8, -8, 8, 8 ) ]
 
 [node name="TileMap" type="Node2D"]
 
@@ -29,6 +91,9 @@ region_rect = Rect2( 16, 0, 16, 16 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileSetCutter/1/StaticBody2D"]
 polygon = PoolVector2Array( 8, -8, -8, -8, -8, 8, 8, 8 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/1/StaticBody2D"]
+navpoly = SubResource( 1 )
 
 [node name="2" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 48, 0 )
@@ -69,6 +134,11 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 80, 0, 16, 16 )
 
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/5"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/5/Navigation2D"]
+navpoly = SubResource( 2 )
+
 [node name="6" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 0, 24 )
 texture = ExtResource( 3 )
@@ -85,6 +155,11 @@ position = Vector2( 24, 24 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 16, 16, 16, 16 )
+
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/7"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/7/Navigation2D"]
+navpoly = SubResource( 3 )
 
 [node name="8" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 48, 24 )
@@ -136,15 +211,15 @@ region_rect = Rect2( 0, 32, 16, 16 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileSetCutter/12/StaticBody2D"]
 polygon = PoolVector2Array( -8, 8, 8, 8, 8, -8, -8, -8, -8, 8 )
 
-[node name="14" type="Sprite" parent="TileSetCutter"]
+[node name="13" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 24, 48 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 16, 32, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="TileSetCutter/14"]
+[node name="StaticBody2D" type="StaticBody2D" parent="TileSetCutter/13"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileSetCutter/14/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileSetCutter/13/StaticBody2D"]
 polygon = PoolVector2Array( -8, -8, 8, -8, 8, 0, 8, 8, -8, 8 )
 
 [node name="16" type="Sprite" parent="TileSetCutter"]
@@ -307,6 +382,11 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 32, 96, 16, 16 )
 
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/48"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/48/Navigation2D"]
+navpoly = SubResource( 4 )
+
 [node name="54" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 72, 144 )
 texture = ExtResource( 3 )
@@ -331,17 +411,32 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 112, 16, 16 )
 
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/43"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/43/Navigation2D"]
+navpoly = SubResource( 5 )
+
 [node name="49" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 24, 168 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 16, 112, 16, 16 )
 
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/49"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/49/Navigation2D"]
+navpoly = SubResource( 6 )
+
 [node name="56" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 48, 168 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 32, 112, 16, 16 )
+
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/56"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/56/Navigation2D"]
+navpoly = SubResource( 7 )
 
 [node name="63" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 72, 168 )
@@ -367,17 +462,32 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 128, 16, 16 )
 
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/51"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/51/Navigation2D"]
+navpoly = SubResource( 8 )
+
 [node name="57" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 24, 192 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 16, 128, 16, 16 )
 
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/57"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/57/Navigation2D"]
+navpoly = SubResource( 9 )
+
 [node name="64" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 48, 192 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 32, 128, 16, 16 )
+
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/64"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/64/Navigation2D"]
+navpoly = SubResource( 10 )
 
 [node name="88" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 120, 192 )
@@ -391,17 +501,32 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 144, 16, 16 )
 
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/58"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/58/Navigation2D"]
+navpoly = SubResource( 11 )
+
 [node name="65" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 24, 216 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 16, 144, 16, 16 )
 
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/65"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/65/Navigation2D"]
+navpoly = SubResource( 12 )
+
 [node name="72" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 48, 216 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 32, 144, 16, 16 )
+
+[node name="Navigation2D" type="Navigation2D" parent="TileSetCutter/72"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="TileSetCutter/72/Navigation2D"]
+navpoly = SubResource( 13 )
 
 [node name="99" type="Sprite" parent="TileSetCutter"]
 position = Vector2( 120, 216 )

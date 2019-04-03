@@ -24,7 +24,13 @@ func _input(event):
 		if event.is_action_pressed("health_increase"):
 			.change_health(1)
 		if event.is_action_pressed("health_decrease"):
-			.change_health(-1)						
+			.change_health(-1)
+		if event.is_action_pressed('click'):
+			if Input.is_key_pressed(KEY_SHIFT):
+				global_position = get_global_mouse_position()
+			else:
+				target_position = get_global_mouse_position()
+				_change_state(STATES.FOLLOW)							
 	
 
 
