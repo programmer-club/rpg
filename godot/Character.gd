@@ -149,7 +149,6 @@ func move_to(world_position):
 	#velocity += steering / MASS
 	#position += velocity * get_process_delta_time()
 	#rotation = velocity.angle() 
-	print (direction.normalized())
 	
 	return position.distance_to(world_position) <= ARRIVE_DISTANCE
 

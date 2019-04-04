@@ -8,6 +8,7 @@
 script = ExtResource( 2 )
 
 [node name="KinematicBody2D" parent="." index="0"]
+collision_layer = 2
 script = null
 
 [node name="Player" parent="KinematicBody2D" index="1"]
@@ -15,5 +16,7 @@ texture = ExtResource( 3 )
 region_rect = Rect2( 368, 208, 16, 16 )
 
 [node name="RayCastLOS" parent="KinematicBody2D" index="8"]
+enabled = true
 cast_to = Vector2( 0, -48 )
+collide_with_areas = true
 
