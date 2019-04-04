@@ -5,11 +5,15 @@
 [ext_resource path="res://assets/0x72_DungeonTilesetII_v1.png" type="Texture" id=3]
 
 [node name="Node2D" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
 
 [node name="KinematicBody2D" parent="." index="0"]
-script = ExtResource( 2 )
+script = null
 
 [node name="Player" parent="KinematicBody2D" index="1"]
 texture = ExtResource( 3 )
 region_rect = Rect2( 368, 208, 16, 16 )
+
+[node name="RayCastLOS" parent="KinematicBody2D" index="8"]
+cast_to = Vector2( 0, -48 )
 

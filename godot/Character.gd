@@ -75,29 +75,29 @@ func try_move(offset):
 		try_move_down()		
 
 func try_move_down():
-#	if rc_down.is_colliding():
-#		anim.play("look_down")
-#	else:
+	if rc_down.is_colliding():
+		anim.play("look_down")
+	else:
 		anim.play("down")
 		move_squares(Vector2(0,1))
 		
 func try_move_right():
-#	if rc_right.is_colliding():
-#		anim.play("look_right")
-#	else:
+	if rc_right.is_colliding():
+		anim.play("look_right")
+	else:
 		anim.play("right")
 		move_squares(Vector2(1,0))
 func try_move_up():
-#	if rc_up.is_colliding():
-#		anim.play("look_up")
-#	else:
+	if rc_up.is_colliding():
+		anim.play("look_up")
+	else:
 		anim.play("up")
 		move_squares(Vector2(0,-1))
 		
 func try_move_left():
-#	if rc_left.is_colliding():
-#		anim.play("look_left")
-#	else:
+	if rc_left.is_colliding():
+		anim.play("look_left")
+	else:
 		anim.play("left")
 		move_squares(Vector2(-1,0))
 
@@ -154,10 +154,3 @@ func move_to(world_position):
 	return position.distance_to(world_position) <= ARRIVE_DISTANCE
 
 
-func _input(event):
-	if event.is_action_pressed('click'):
-		if Input.is_key_pressed(KEY_SHIFT):
-			global_position = get_global_mouse_position()
-		else:
-			target_position = get_global_mouse_position()
-		_change_state(STATES.FOLLOW)	
