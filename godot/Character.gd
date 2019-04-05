@@ -5,7 +5,7 @@ extends Node2D
 # var b = "text"
 onready var anim = get_node("KinematicBody2D/AnimationPlayer")
 onready var sprite = get_node("KinematicBody2D/Player")
-
+onready var RayCastLOS = get_node("KinematicBody2D/RayCastLOS")
 onready var rc_down = get_node("KinematicBody2D/RayCastDown")
 onready var rc_up = get_node("KinematicBody2D/RayCastUp")
 onready var rc_left = get_node("KinematicBody2D/RayCastLeft")
@@ -18,10 +18,11 @@ export(int) var con_stat = 10
 export(int) var wis_stat = 10
 export(int) var cha_stat = 10
 
+
 export(float) var SPEED = 200.0
 
-enum STATES { IDLE, FOLLOW }
-var _state = null
+enum STATES { IDLE, FOLLOW, ATTACK1, ATTACK2, ATTACK3, STAGGER, DIE, DEAD }
+var _state = STATES.IDLE
 
 var path = []
 var target_point_world = Vector2()
@@ -31,7 +32,9 @@ var velocity = Vector2()
 var speed_timer = 0
 var speed_timer_limit = dex_stat/10#tiles per second
 signal health_changed(newhealth);
+signal die
 var health = 100;
+var current_attack_target;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,20 +47,36 @@ func _ready():
 func move_squares(offset):
 	translate(offset * 16)
 	
-func attack1():
-	print("Default Player doing attack 1");
+func attack1(target):
+	var DistanceToEnemy = target.position-position;
+	if DistanceToEnemy.length() == 16:
+		match DistanceToEnemy.normalized().round():
+			Vector2(-0, -1):
+				anim.play("attack_up")
+			Vector2(-1, -0):
+				anim.play("attack_left")
+			Vector2(1, -0):
+				anim.play("attack_right")
+			Vector2(-0, 1): 
+				anim.play("attack_down")
+		target.change_health(-10) #then target is on adjacent square.
 
-func attack2():
-	pass;
+func attack2(target):
+	if (target_position-position).length() == 16:
+		target.change_health(-10) #then target is on adjacent square.;
 
-func attack3():
-	pass;
-	
+func attack3(target):
+	if (target_position-position).length() == 16:
+		target.change_health(-10) #then target is on adjacent square.
+		
 func change_health(delta_health):
-	if health + delta_health > 100:
+	if delta_health < 0:
+		_change_state(STATES.STAGGER)
+	if health + delta_health >= 100:
 		health=100
-	elif health + delta_health < 0:
+	elif health + delta_health <= 0:
 		health= 0
+		_change_state(STATES.DIE)
 	else:
 		health += delta_health
 	
@@ -65,14 +84,15 @@ func change_health(delta_health):
 	print("changing health by ", delta_health)
 
 func try_move(offset):
-	if offset.round() == Vector2(-0, -1):
-		try_move_up()
-	if offset.round() == Vector2(-1, -0):
-		try_move_left()
-	if offset.round() == Vector2(1, -0):
-		try_move_right()
-	if offset.round() == Vector2(-0, 1): 
-		try_move_down()		
+	match offset.round():
+		Vector2(-0, -1):
+			try_move_up()
+		Vector2(-1, -0):
+			try_move_left()
+		Vector2(1, -0):
+			try_move_right()
+		Vector2(-0, 1): 
+			try_move_down()		
 
 func try_move_down():
 	if rc_down.is_colliding():
@@ -110,14 +130,25 @@ func is_anim_playing():
 
 
 func _change_state(new_state):
-	if new_state == STATES.FOLLOW:
-		path = get_node('../Map/TileMapBackground').return_path(position, target_position)
-		if not path or len(path) == 1:
-			_change_state(STATES.IDLE)
-			return
+	match new_state:
+		STATES.FOLLOW:
+			path = get_node('../Map/TileMapBackground').return_path(position, target_position)
+			if not path or len(path) == 1:
+				_change_state(STATES.IDLE)
+				return
 		# The index 0 is the starting cell
 		# we don't want the character to move back to it in this example
-		target_point_world = path[1]
+			target_point_world = path[1]
+		STATES.ATTACK1:	
+			attack1(current_attack_target)
+		STATES.ATTACK2:
+			attack2(current_attack_target)
+		STATES.ATTACK3:
+			attack3(current_attack_target)
+		STATES.DIE:
+			anim.play("die")
+		STATES.STAGGER:	
+			anim.play("stagger")
 	_state = new_state
 
 
@@ -151,5 +182,18 @@ func move_to(world_position):
 	#rotation = velocity.angle() 
 	
 	return position.distance_to(world_position) <= ARRIVE_DISTANCE
+	
+func chase(target):
+	target_position = target.position
+	_change_state(STATES.FOLLOW)
+
+func search(target):
+	var DistanceToTarget = target.position - position
+	print(DistanceToTarget)
+	RayCastLOS.cast_to = DistanceToTarget
+	if RayCastLOS.is_colliding():
+		if RayCastLOS.get_collider() == target.get_node("KinematicBody2D"):
+			print("Target Acquired")
+			return true
 
 

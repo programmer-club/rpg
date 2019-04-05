@@ -79,3 +79,6 @@ cast_to = Vector2( -16, 0 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 
+[node name="RayCastLOS" type="RayCast2D" parent="KinematicBody2D"]
+enabled = true
+

@@ -81,5 +81,3 @@ cast_to = Vector2( 16, 0 )
 
 [node name="Navigation2D" type="Navigation2D" parent="KinematicBody2D"]
 
-[node name="RayCastLOS" type="RayCast2D" parent="KinematicBody2D"]
-

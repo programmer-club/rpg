@@ -6,17 +6,11 @@ extends "res://NPC.gd"
 onready var player = get_node("../Knight")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass#chase(player) # Replace with function body.
+	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+#	pass
 	var targetFound = search(player)
 	if targetFound:
 		.chase(player)
-
-
-
-                #Do what ever you do when a player is detected
-
-
-
