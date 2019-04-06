@@ -31,4 +31,3 @@ position = Vector2( 88, 200 )
 position = Vector2( 216, 152 )
 script = ExtResource( 7 )
 
-[connection signal="health_changed" from="Knight" to="Control" method="_on_Knight_health_changed"]
