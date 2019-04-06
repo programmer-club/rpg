@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/the-fall-of-the-dungeon-guardians-25.png-36595f76080ea3546cfdc01371a080e5.stex"
+path="res://.import/Table.png-0623e58f89f6aa3bb92b044c7be20fde.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://the-fall-of-the-dungeon-guardians-25.png"
-dest_files=[ "res://.import/the-fall-of-the-dungeon-guardians-25.png-36595f76080ea3546cfdc01371a080e5.stex" ]
+source_file="res://Table.png"
+dest_files=[ "res://.import/Table.png-0623e58f89f6aa3bb92b044c7be20fde.stex" ]
 
 [params]
 

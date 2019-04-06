@@ -11,7 +11,6 @@
 [ext_resource path="res://Torch2.png" type="Texture" id=9]
 [ext_resource path="res://Torch3.png" type="Texture" id=10]
 
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
@@ -44,7 +43,6 @@ texture = ExtResource( 2 )
 position = Vector2( 314, 386 )
 scale = Vector2( 1.31333, 1.44 )
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="Torch" type="AnimatedSprite" parent="."]
