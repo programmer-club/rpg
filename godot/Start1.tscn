@@ -68,21 +68,21 @@ texture = ExtResource( 5 )
 position = Vector2( 314, 386 )
 scale = Vector2( 1.31333, 1.44 )
 frames = SubResource( 1 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Torch" type="AnimatedSprite" parent="."]
 position = Vector2( 221, 106 )
 scale = Vector2( 1.34, 1.28 )
 frames = SubResource( 2 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Torch2" type="AnimatedSprite" parent="."]
 position = Vector2( 771, 106 )
 scale = Vector2( 1.34, 1.28 )
 frames = SubResource( 2 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Play Button" type="Button" parent="."]

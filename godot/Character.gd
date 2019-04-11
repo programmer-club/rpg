@@ -21,7 +21,7 @@ export(int) var cha_stat = 10
 
 export(float) var SPEED = 200.0
 
-enum STATES { IDLE, FOLLOW, ATTACK1, ATTACK2, ATTACK3, STAGGER, DIE, DEAD }
+enum STATES { IDLE, FOLLOW, CHASE, ATTACK1, ATTACK2, ATTACK3, STAGGER, DIE, DEAD }
 var _state = STATES.IDLE
 
 var path = []
@@ -34,11 +34,12 @@ var speed_timer_limit = dex_stat/10#tiles per second
 signal health_changed(newhealth);
 signal die
 var health = 100;
-var current_attack_target;
+var current_target;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_change_state(STATES.IDLE)
+	RayCastLOS.enabled = true
 	 # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -139,12 +140,17 @@ func _change_state(new_state):
 		# The index 0 is the starting cell
 		# we don't want the character to move back to it in this example
 			target_point_world = path[1]
+		STATES.CHASE:
+			path = get_node('../Map/TileMapBackground').return_path(position, current_target.position)
+			if not path or len(path) == 1:
+				_change_state(STATES.IDLE)
+				return
 		STATES.ATTACK1:	
-			attack1(current_attack_target)
+			attack1(current_target)
 		STATES.ATTACK2:
-			attack2(current_attack_target)
+			attack2(current_target)
 		STATES.ATTACK3:
-			attack3(current_attack_target)
+			attack3(current_target)
 		STATES.DIE:
 			anim.play("die")
 		STATES.STAGGER:	
@@ -156,15 +162,34 @@ func _process(delta):
 	speed_timer += delta
 	if (speed_timer > speed_timer_limit):
 		speed_timer -= speed_timer_limit
-		if not _state == STATES.FOLLOW:
-			return
-		var arrived_to_next_point = move_to(target_point_world)
-		if arrived_to_next_point:
-			path.remove(0)
-			if len(path) == 0:
-				_change_state(STATES.IDLE)
-				return
-			target_point_world = path[0]
+		match _state:
+			STATES.FOLLOW:
+				var arrived_to_next_point = move_to(target_point_world)
+				if arrived_to_next_point:
+					path.remove(0)
+					if len(path) == 0:
+						_change_state(STATES.IDLE)
+						return
+					target_point_world = path[0]
+				# The index 0 is the starting cell
+			STATES.CHASE:
+				var arrived_to_next_point = move_to(target_point_world)
+				if arrived_to_next_point:
+					path.remove(0)
+					if len(path) == 0:
+						_change_state(STATES.IDLE)
+						return
+					target_point_world = path[0]
+			STATES.ATTACK1:	
+				attack1(current_target)
+			STATES.ATTACK2:
+				attack2(current_target)
+			STATES.ATTACK3:
+				attack3(current_target)
+			STATES.DIE:
+				anim.play("die")
+			STATES.STAGGER:	
+				anim.play("stagger")
 
 
 
@@ -189,11 +214,11 @@ func chase(target):
 
 func search(target):
 	var DistanceToTarget = target.position - position
-	print(DistanceToTarget)
+	#print(DistanceToTarget)
 	RayCastLOS.cast_to = DistanceToTarget
 	if RayCastLOS.is_colliding():
 		if RayCastLOS.get_collider() == target.get_node("KinematicBody2D"):
-			print("Target Acquired")
+			#print("Target Acquired")
 			return true
 
 

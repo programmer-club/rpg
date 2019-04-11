@@ -15,8 +15,3 @@ script = null
 texture = ExtResource( 3 )
 region_rect = Rect2( 368, 208, 16, 16 )
 
-[node name="RayCastLOS" parent="KinematicBody2D" index="8"]
-enabled = true
-cast_to = Vector2( 0, -48 )
-collide_with_areas = true
-
