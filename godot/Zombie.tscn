@@ -9,9 +9,13 @@ script = ExtResource( 2 )
 
 [node name="KinematicBody2D" parent="." index="0"]
 collision_layer = 2
-script = null
 
-[node name="Player" parent="KinematicBody2D" index="1"]
+[node name="Player" parent="KinematicBody2D" index="0"]
 texture = ExtResource( 3 )
 region_rect = Rect2( 368, 208, 16, 16 )
+
+[node name="Area2D" type="Area2D" parent="KinematicBody2D" index="8"]
+
+[node name="ClickDetector" type="CollisionPolygon2D" parent="KinematicBody2D/Area2D" index="0"]
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
 

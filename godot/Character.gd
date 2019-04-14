@@ -10,6 +10,7 @@ onready var rc_down = get_node("KinematicBody2D/RayCastDown")
 onready var rc_up = get_node("KinematicBody2D/RayCastUp")
 onready var rc_left = get_node("KinematicBody2D/RayCastLeft")
 onready var rc_right = get_node("KinematicBody2D/RayCastRight")
+onready var click_detector = get_node("KinematicBody2D/ClickDetector")
 
 export(int) var str_stat = 10
 export(int) var dex_stat = 10
@@ -32,7 +33,7 @@ var velocity = Vector2()
 var speed_timer = 0
 var speed_timer_limit = dex_stat/10#tiles per second
 signal health_changed(newhealth);
-signal die
+signal die;
 var health = 100;
 var current_target;
 
@@ -145,6 +146,7 @@ func _change_state(new_state):
 			if not path or len(path) == 1:
 				_change_state(STATES.IDLE)
 				return
+			target_point_world = path[1]
 		STATES.ATTACK1:	
 			attack1(current_target)
 		STATES.ATTACK2:
@@ -153,6 +155,8 @@ func _change_state(new_state):
 			attack3(current_target)
 		STATES.DIE:
 			anim.play("die")
+			queue_free()
+			emit_signal("die")
 		STATES.STAGGER:	
 			anim.play("stagger")
 	_state = new_state
@@ -187,9 +191,11 @@ func _process(delta):
 			STATES.ATTACK3:
 				attack3(current_target)
 			STATES.DIE:
-				anim.play("die")
+				pass;
+				#anim.play("die")
 			STATES.STAGGER:	
-				anim.play("stagger")
+				pass;
+				#anim.play("stagger")
 
 
 
@@ -209,8 +215,8 @@ func move_to(world_position):
 	return position.distance_to(world_position) <= ARRIVE_DISTANCE
 	
 func chase(target):
-	target_position = target.position
-	_change_state(STATES.FOLLOW)
+	current_target = target
+	_change_state(STATES.CHASE)
 
 func search(target):
 	var DistanceToTarget = target.position - position
@@ -222,3 +228,8 @@ func search(target):
 			return true
 
 
+
+
+#func _on_ClickDetector_clicked(owner):
+#	print("chasing" +owner.name)
+#	chase(owner) # Replace with function body.

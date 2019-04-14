@@ -24,16 +24,15 @@ func _input(event):
 			#.change_health(1)
 		#if event.is_action_pressed("health_decrease"):
 			#.change_health(-1)
-		if event.is_action_pressed('click'):
-			RayCastLOS.cast_to = get_global_mouse_position() #look where 
-			if RayCastLOS.is_colliding():
-				if RayCastLOS.get_collider() is KinematicBody2D:
-					print("Seeing kinematic Body, targeting it")
-					current_target = RayCastLOS.get_collider().get_parent()
-					_change_state(STATES.CHASE)
-			else:
-				target_position = get_global_mouse_position()
-				_change_state(STATES.FOLLOW)							
+#		if event.is_action_pressed('click'):
+#			
+#				target_position = get_global_mouse_position()
+#				_change_state(STATES.FOLLOW)							
+				
+func on_ClickDetector_clicked(owner):
+	current_target = owner
+	print("Chasing " + owner)
+	_change_state(STATES.CHASE)
 	
 
 

@@ -7,11 +7,13 @@
 [node name="Knight" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="KinematicBody2D" parent="." index="0"]
-script = null
-
-[node name="Player" parent="KinematicBody2D" index="1"]
+[node name="Player" parent="KinematicBody2D" index="0"]
 position = Vector2( 0, -4 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 128, 72, 16, 24 )
+
+[node name="Area2D" type="Area2D" parent="KinematicBody2D" index="8"]
+
+[node name="ClickDetector" type="CollisionPolygon2D" parent="KinematicBody2D/Area2D" index="0"]
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
 
