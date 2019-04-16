@@ -125,11 +125,6 @@ func try_move_left():
 
 func is_anim_playing():
 	return anim.is_playing()
-	
-
-
-
-
 
 func _change_state(new_state):
 	match new_state:
@@ -138,15 +133,10 @@ func _change_state(new_state):
 			if not path or len(path) == 1:
 				_change_state(STATES.IDLE)
 				return
-		# The index 0 is the starting cell
-		# we don't want the character to move back to it in this example
 			target_point_world = path[1]
 		STATES.CHASE:
-			path = get_node('../Map/TileMapBackground').return_path(position, current_target.position)
-			if not path or len(path) == 1:
-				_change_state(STATES.IDLE)
-				return
-			target_point_world = path[1]
+			find_path_to_target(current_target)
+			
 		STATES.ATTACK1:	
 			attack1(current_target)
 		STATES.ATTACK2:
@@ -174,7 +164,7 @@ func _process(delta):
 					if len(path) == 0:
 						_change_state(STATES.IDLE)
 						return
-					target_point_world = path[0]
+					target_point_world = path[1]
 				# The index 0 is the starting cell
 			STATES.CHASE:
 				var arrived_to_next_point = move_to(target_point_world)
@@ -183,7 +173,7 @@ func _process(delta):
 					if len(path) == 0:
 						_change_state(STATES.IDLE)
 						return
-					target_point_world = path[0]
+					target_point_world = path[1]
 			STATES.ATTACK1:	
 				attack1(current_target)
 			STATES.ATTACK2:
@@ -217,6 +207,7 @@ func move_to(world_position):
 func chase(target):
 	current_target = target
 	_change_state(STATES.CHASE)
+	print("Chasing" + target.name)
 
 func search(target):
 	var DistanceToTarget = target.position - position
@@ -227,7 +218,14 @@ func search(target):
 			#print("Target Acquired")
 			return true
 
-
+func find_path_to_target(target):
+	path = get_node('../Map/TileMapBackground').return_path(position, target.position)
+	print(path)
+	if not path or len(path) == 1:
+		_change_state(STATES.IDLE)
+		print("Path empty")
+		return
+	target_point_world = path[1]
 
 
 #func _on_ClickDetector_clicked(owner):

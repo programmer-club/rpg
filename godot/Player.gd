@@ -30,9 +30,8 @@ func _input(event):
 #				_change_state(STATES.FOLLOW)							
 				
 func on_ClickDetector_clicked(owner):
-	current_target = owner
-	print("Chasing " + owner)
-	_change_state(STATES.CHASE)
+	chase(owner)
+	print("Clicked " + owner.name)
 	
 
 

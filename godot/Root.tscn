@@ -1,12 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Map.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Knight.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Zombie.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Demon.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Demon.gd" type="Script" id=7]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
@@ -21,13 +18,4 @@ margin_bottom = 256.0
 
 [node name="Knight" parent="." instance=ExtResource( 4 )]
 position = Vector2( 40, 24 )
-
-[node name="Zombie" parent="." groups=[
-"Enemies",
-] instance=ExtResource( 5 )]
-position = Vector2( 88, 200 )
-
-[node name="Demon" parent="." instance=ExtResource( 6 )]
-position = Vector2( 216, 152 )
-script = ExtResource( 7 )
 
