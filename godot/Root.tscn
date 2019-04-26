@@ -16,6 +16,7 @@ margin_bottom = 256.0
 
 [node name="Map" parent="." instance=ExtResource( 3 )]
 
-[node name="Knight" parent="." instance=ExtResource( 4 )]
-position = Vector2( 40, 24 )
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Knight" parent="Player" instance=ExtResource( 4 )]
 

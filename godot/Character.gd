@@ -214,13 +214,13 @@ func search(target):
 	#print(DistanceToTarget)
 	RayCastLOS.cast_to = DistanceToTarget
 	if RayCastLOS.is_colliding():
-		if RayCastLOS.get_collider() == target.get_node("KinematicBody2D"):
+		if RayCastLOS.get_collider() == target.get_child(0).get_node("KinematicBody2D"):
 			#print("Target Acquired")
 			return true
 
 func find_path_to_target(target):
 	path = get_node('../Map/TileMapBackground').return_path(position, target.position)
-	print(path)
+
 	if not path or len(path) == 1:
 		_change_state(STATES.IDLE)
 		print("Path empty")

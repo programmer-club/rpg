@@ -3,7 +3,7 @@ extends "res://NPC.gd"
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var player = get_node("../Knight")
+onready var player = get_node("../Player")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass#chase(player) # Replace with function body.
@@ -14,8 +14,8 @@ func _process(delta):
 	if targetFound:
 		.chase(player)
 
-
-
+func _on_ClickDetector_clicked(owner):
+	pass
                 #Do what ever you do when a player is detected
 
 
