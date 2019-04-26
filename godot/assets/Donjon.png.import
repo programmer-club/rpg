@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Wall.png-76cbb924fb65c8833c17e120b497a969.stex"
+path="res://.import/Donjon.png-032284212ff4ca3e8f0d3c64568f03c6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Wall.png"
-dest_files=[ "res://.import/Wall.png-76cbb924fb65c8833c17e120b497a969.stex" ]
+source_file="res://assets/Donjon.png"
+dest_files=[ "res://.import/Donjon.png-032284212ff4ca3e8f0d3c64568f03c6.stex" ]
 
 [params]
 

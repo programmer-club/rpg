@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Donjon.png-77c6ee4ad2065de7a57bec5b2126b1fa.stex"
+path="res://.import/Torch1.png-2d78271c44e505b7c1dbd9c5ed564fef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Donjon.png"
-dest_files=[ "res://.import/Donjon.png-77c6ee4ad2065de7a57bec5b2126b1fa.stex" ]
+source_file="res://assets/Torch1.png"
+dest_files=[ "res://.import/Torch1.png-2d78271c44e505b7c1dbd9c5ed564fef.stex" ]
 
 [params]
 

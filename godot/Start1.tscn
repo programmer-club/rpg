@@ -1,19 +1,33 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Wall.png" type="Texture" id=1]
-[ext_resource path="res://Table.png" type="Texture" id=2]
-[ext_resource path="res://Book.png" type="Texture" id=3]
-[ext_resource path="res://Bowl.png" type="Texture" id=4]
-[ext_resource path="res://Doll.png" type="Texture" id=5]
-[ext_resource path="res://Lantern0.png" type="Texture" id=6]
-[ext_resource path="res://Lantern1.png" type="Texture" id=7]
-[ext_resource path="res://Lantern2.png" type="Texture" id=8]
-[ext_resource path="res://Lantern3.png" type="Texture" id=9]
-[ext_resource path="res://Torch0.png" type="Texture" id=10]
-[ext_resource path="res://Torch1.png" type="Texture" id=11]
-[ext_resource path="res://Torch2.png" type="Texture" id=12]
-[ext_resource path="res://Torch3.png" type="Texture" id=13]
-[ext_resource path="res://New Piskel-1.png (6).png" type="Texture" id=14]
+[ext_resource path="res://assets/Wall.png" type="Texture" id=1]
+[ext_resource path="res://assets/Table.png" type="Texture" id=2]
+[ext_resource path="res://assets/Book.png" type="Texture" id=3]
+[ext_resource path="res://assets/Bowl.png" type="Texture" id=4]
+[ext_resource path="res://assets/Doll.png" type="Texture" id=5]
+[ext_resource path="res://assets/Lantern0.png" type="Texture" id=6]
+[ext_resource path="res://assets/Lantern1.png" type="Texture" id=7]
+[ext_resource path="res://assets/Lantern2.png" type="Texture" id=8]
+[ext_resource path="res://assets/Lantern3.png" type="Texture" id=9]
+[ext_resource path="res://assets/Torch0.png" type="Texture" id=10]
+[ext_resource path="res://assets/Torch1.png" type="Texture" id=11]
+[ext_resource path="res://assets/Torch2.png" type="Texture" id=12]
+[ext_resource path="res://assets/Torch3.png" type="Texture" id=13]
+[ext_resource path="res://assets/New Piskel-1.png (6).png" type="Texture" id=14]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

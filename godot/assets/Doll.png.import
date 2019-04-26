@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Lantern2.png-479e14fc8d208c0b665abd9cead8f576.stex"
+path="res://.import/Doll.png-2634e038a68ee159bc6f1d44edc13df7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Lantern2.png"
-dest_files=[ "res://.import/Lantern2.png-479e14fc8d208c0b665abd9cead8f576.stex" ]
+source_file="res://assets/Doll.png"
+dest_files=[ "res://.import/Doll.png-2634e038a68ee159bc6f1d44edc13df7.stex" ]
 
 [params]
 

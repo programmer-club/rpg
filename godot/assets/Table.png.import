@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bowl2.png-8962e9ae9c3b5a251ef6759b95f11d74.stex"
+path="res://.import/Table.png-ed9e4c957d765e3c1c1f5f43b2783df6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Bowl2.png"
-dest_files=[ "res://.import/Bowl2.png-8962e9ae9c3b5a251ef6759b95f11d74.stex" ]
+source_file="res://assets/Table.png"
+dest_files=[ "res://.import/Table.png-ed9e4c957d765e3c1c1f5f43b2783df6.stex" ]
 
 [params]
 

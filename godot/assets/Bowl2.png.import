@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Torch3.png-a4bcec8cf6e9830d8f219fcf4b4909bc.stex"
+path="res://.import/Bowl2.png-59fb19857bd7c99156d3e2a162860548.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Torch3.png"
-dest_files=[ "res://.import/Torch3.png-a4bcec8cf6e9830d8f219fcf4b4909bc.stex" ]
+source_file="res://assets/Bowl2.png"
+dest_files=[ "res://.import/Bowl2.png-59fb19857bd7c99156d3e2a162860548.stex" ]
 
 [params]
 
