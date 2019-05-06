@@ -10,7 +10,7 @@ var current_player_type = PLAYERTYPES.KNIGHT
 func _ready():
 	add_Zombie(Vector2(5,12), "Bob the Zombie")
 	add_Demon(Vector2(13,11), "Dan the Demon")
-	add_Player(Vector2(4,4), "Pete the Player", PLAYERTYPES.KNIGHT)
+	add_Player(Vector2(2,3), "Pete the Player", PLAYERTYPES.KNIGHT)
 	change_Player_type(current_player_type)
 	print("Summoning Zombie")
 	
@@ -40,13 +40,13 @@ func add_Player(position, name, type):
 func change_Player_type(type):
 	match type:
 		PLAYERTYPES.KNIGHT:
-			player.add_child(knight_resource.instance(), true)
+			player.add_child(knight_resource.instance())
 			player.get_child(1).set_position(player.get_child(0).position);
 			
 			player.remove_child(player.get_child(0))
 			current_player_type = PLAYERTYPES.KNIGHT
 		PLAYERTYPES.WIZARD:
-			player.add_child(wizard_resource.instance(), true)
+			player.add_child(wizard_resource.instance())
 			player.get_child(1).set_position(player.get_child(0).position);
 			
 			player.remove_child(player.get_child(0))

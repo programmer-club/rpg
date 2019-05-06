@@ -47,7 +47,7 @@ func _ready():
 #func _process(delta):
 #	pass
 func move_squares(offset):
-	translate(offset * 16)
+	get_parent().translate(offset * 16)
 	
 func attack1(target):
 	var DistanceToEnemy = target.position-position;
@@ -129,13 +129,13 @@ func is_anim_playing():
 func _change_state(new_state):
 	match new_state:
 		STATES.FOLLOW:
-			path = get_node('../Map/TileMapBackground').return_path(position, target_position)
-			if not path or len(path) == 1:
-				_change_state(STATES.IDLE)
-				return
-			target_point_world = path[1]
+				path = get_node('../Map/TileMapBackground').return_path(position, target_position)
+				if not path or len(path) == 1:
+					_change_state(STATES.IDLE)
+					return
+				target_point_world = path[1]
 		STATES.CHASE:
-			find_path_to_target(current_target)
+			find_path_to_target(current_target.get_child(0))
 			
 		STATES.ATTACK1:	
 			attack1(current_target)
@@ -161,19 +161,24 @@ func _process(delta):
 				var arrived_to_next_point = move_to(target_point_world)
 				if arrived_to_next_point:
 					path.remove(0)
-					if len(path) == 0:
+					if len(path) < 1:
 						_change_state(STATES.IDLE)
 						return
-					target_point_world = path[1]
+					else:
+						
+						target_point_world = path[0]
 				# The index 0 is the starting cell
 			STATES.CHASE:
+				find_path_to_target(current_target.get_child(0))
+				print(path)
 				var arrived_to_next_point = move_to(target_point_world)
 				if arrived_to_next_point:
 					path.remove(0)
-					if len(path) == 0:
+					if len(path) < 1 :
 						_change_state(STATES.IDLE)
 						return
-					target_point_world = path[1]
+					else:
+						target_point_world = path[0]
 			STATES.ATTACK1:	
 				attack1(current_target)
 			STATES.ATTACK2:
@@ -187,21 +192,11 @@ func _process(delta):
 				pass;
 				#anim.play("stagger")
 
-
-
-
-
 func move_to(world_position):
 	var direction = (world_position-position).snapped(Vector2.UP).snapped(Vector2.RIGHT) * SPEED
 	#var MASS = 10.0
 	var ARRIVE_DISTANCE = 0.0
-	try_move(direction.normalized())#Vector2(direction.project(Vector2.RIGHT).normalized().x,direction.project(Vector2.UP).normalized().y).normalized().round())
-	#var desired_velocity = (world_position - position).normalized() * SPEED
-	#var steering = desired_velocity - velocity
-	#velocity += steering / MASS
-	#position += velocity * get_process_delta_time()
-	#rotation = velocity.angle() 
-	
+	try_move(direction.normalized())#Vector2(direction.project(Vector2.RIGHT).normalized().x,direction.project(Vector2.UP).normalized().y).normalized().round()))	
 	return position.distance_to(world_position) <= ARRIVE_DISTANCE
 	
 func chase(target):
@@ -214,18 +209,19 @@ func search(target):
 	#print(DistanceToTarget)
 	RayCastLOS.cast_to = DistanceToTarget
 	if RayCastLOS.is_colliding():
-		if RayCastLOS.get_collider() == target.get_child(0).get_node("KinematicBody2D"):
+		if RayCastLOS.get_collider() == target.get_node("KinematicBody2D"):
 			#print("Target Acquired")
 			return true
 
 func find_path_to_target(target):
 	path = get_node('../Map/TileMapBackground').return_path(position, target.position)
 
-	if not path or len(path) == 1:
+	if not path or len(path) == 0:
 		_change_state(STATES.IDLE)
 		print("Path empty")
 		return
-	target_point_world = path[1]
+	
+	target_point_world = path[0]
 
 
 #func _on_ClickDetector_clicked(owner):

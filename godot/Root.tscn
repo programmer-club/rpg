@@ -3,7 +3,7 @@
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Map.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Knight.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
@@ -18,5 +18,5 @@ margin_bottom = 256.0
 
 [node name="Player" type="Node2D" parent="."]
 
-[node name="Knight" parent="Player" instance=ExtResource( 4 )]
+[node name="DummyPlayer" parent="Player" instance=ExtResource( 4 )]
 
