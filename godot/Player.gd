@@ -32,7 +32,7 @@ func _input(event):
 				
 func on_ClickDetector_clicked(owner):
 	.chase(owner)
-	print("Clicked " + owner.get_path())
+	print("Clicked: " + owner.get_path())
 	
 
 

@@ -80,4 +80,6 @@ script = ExtResource( 3 )
 [node name="ClickDetectorPolygon" type="CollisionPolygon2D" parent="KinematicBody2D/ClickDetector"]
 polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
 
+[node name="Weapon" type="Node2D" parent="."]
+
 [connection signal="clicked" from="KinematicBody2D/ClickDetector" to="." method="_on_ClickDetector_clicked"]
